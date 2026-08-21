@@ -44,6 +44,8 @@ export default function Dashboard() {
   const logsEndRef = React.useRef(null);
 
   const [isWakingUp, setIsWakingUp] = useState(false);
+  const intervalRef = React.useRef(null);
+  const stopAfterRef = React.useRef(null);
 
   const fetchDashboardData = async (isPolling = false) => {
     try {
@@ -84,24 +86,26 @@ export default function Dashboard() {
 
       if (analyzing) {
         // actively processing – poll every 2 seconds
-        if (!intervalId) {
-          intervalId = setInterval(() => fetchDashboardData(true), 2000);
+        if (!intervalRef.current) {
+          intervalRef.current = setInterval(() => fetchDashboardData(true), 2000);
         }
       } else if (activeStatus === 'completed' && statsData.active_logs?.length > 0) {
         // just finished – keep polling for 10 more seconds to get final logs + report
-        if (!stopAfter) stopAfter = Date.now() + 10000;
-        if (!intervalId) {
-          intervalId = setInterval(() => fetchDashboardData(true), 2000);
+        if (!stopAfterRef.current) stopAfterRef.current = Date.now() + 10000;
+        if (!intervalRef.current) {
+          intervalRef.current = setInterval(() => fetchDashboardData(true), 2000);
         }
-        if (Date.now() >= stopAfter) {
-          clearInterval(intervalId);
-          intervalId = null;
+        if (Date.now() >= stopAfterRef.current) {
+          if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+            intervalRef.current = null;
+          }
         }
       } else {
         // nothing running – clear interval
-        if (intervalId) {
-          clearInterval(intervalId);
-          intervalId = null;
+        if (intervalRef.current) {
+          clearInterval(intervalRef.current);
+          intervalRef.current = null;
         }
       }
     } catch (err) {
@@ -116,7 +120,7 @@ export default function Dashboard() {
   useEffect(() => {
     fetchDashboardData();
     return () => {
-      if (intervalId) clearInterval(intervalId);
+      if (intervalRef.current) clearInterval(intervalRef.current);
     };
   }, []);
 

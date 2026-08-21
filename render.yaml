@@ -18,6 +18,6 @@ services:
       - key: CORS_ALLOW_ORIGIN_REGEX
         value: "https://.*\\.vercel\\.app"
       - key: LLM_MODEL
-        value: "groq/llama-3.3-70b-versatile"
+        value: "groq/openai/gpt-oss-120b"
       - key: GROQ_API_KEY
         sync: false

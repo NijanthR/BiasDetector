@@ -13,10 +13,21 @@ from concurrent.futures import ThreadPoolExecutor
 from crewai import Task, Crew, Process, Agent, LLM
 from pydantic import BaseModel, Field
 from dotenv import load_dotenv
+import litellm
 
 from .tools.data_tools import DataAnalyzer
 
 load_dotenv(override=True)
+
+# Patch litellm completion to drop unsupported properties (like cache_breakpoint) for Groq
+_orig_litellm_completion = litellm.completion
+def _groq_safe_completion(*args, **kwargs):
+    if 'messages' in kwargs and isinstance(kwargs['messages'], list):
+        for msg in kwargs['messages']:
+            if isinstance(msg, dict):
+                msg.pop('cache_breakpoint', None)
+    return _orig_litellm_completion(*args, **kwargs)
+litellm.completion = _groq_safe_completion
 
 # ---------------------------------------------------------------------------
 # Retry helper for transient LLM/API 503/429 errors
@@ -65,8 +76,10 @@ def _make_llm() -> LLM:
     groq_key = os.getenv("GROQ_API_KEY")
     env_model = os.getenv("LLM_MODEL", "").strip()
 
-    model = env_model if env_model else "groq/llama-3.3-70b-versatile"
-    if not model.startswith("groq/") and "/" not in model:
+    model = env_model if env_model else "groq/openai/gpt-oss-120b"
+    if not model.startswith("groq/") and not model.startswith("openai/gpt-oss"):
+        model = f"groq/{model}"
+    elif model.startswith("openai/gpt-oss"):
         model = f"groq/{model}"
     return LLM(model=model, api_key=groq_key)
 
@@ -167,15 +180,34 @@ class AgentOrchestrator:
                 print(f"[log_status] Warning: {exc}")
 
         def parse_output(task_output):
+            if not task_output:
+                return {}
             try:
-                if hasattr(task_output, 'raw') and isinstance(task_output.raw, str):
-                    return json.loads(task_output.raw)
-                if task_output.json_dict:
-                    return task_output.json_dict
                 if hasattr(task_output, 'pydantic') and task_output.pydantic:
                     return task_output.pydantic.model_dump()
-            except Exception:
-                pass
+                if hasattr(task_output, 'json_dict') and task_output.json_dict:
+                    return task_output.json_dict
+                raw_str = task_output.raw if hasattr(task_output, 'raw') else str(task_output)
+                if isinstance(raw_str, str):
+                    try:
+                        return json.loads(raw_str)
+                    except Exception:
+                        pass
+                    import re
+                    json_match = re.search(r'```(?:json)?\s*([\s\S]*?)\s*```', raw_str)
+                    if json_match:
+                        try:
+                            return json.loads(json_match.group(1))
+                        except Exception:
+                            pass
+                    brace_match = re.search(r'(\{[\s\S]*\})', raw_str)
+                    if brace_match:
+                        try:
+                            return json.loads(brace_match.group(1))
+                        except Exception:
+                            pass
+            except Exception as e:
+                print(f"[parse_output] Warning parsing json: {e}")
             return {"raw_output": str(task_output)}
 
         def make_result(task_output, agent_name, raw_dict=None):
@@ -203,12 +235,14 @@ class AgentOrchestrator:
         _classifier, _bias, _report = _make_agents()
         log_status('Dataset Classifier', 'running')
         classifier_task = Task(
-            description=f"Analyze the following dataset metadata and sample to classify its type.\n{context_str}",
+            description=(
+                f"Analyze the following dataset metadata and sample to classify its type.\n{context_str}\n\n"
+                "Return ONLY a valid JSON object with keys: dataset_type (string), numeric_count (int), categorical_count (int), datetime_count (int)."
+            ),
             expected_output="JSON object containing dataset_type, numeric_count, categorical_count, datetime_count",
             agent=_classifier,
-            output_json=ClassifierOutput
         )
-        _kickoff_with_retry(Crew(agents=[_classifier], tasks=[classifier_task], process=Process.sequential, verbose=True))
+        _kickoff_with_retry(Crew(agents=[_classifier], tasks=[classifier_task], process=Process.sequential, verbose=False))
         classifier_result = parse_output(classifier_task.output)
         dataset_type_detected = classifier_result.get('dataset_type', 'unknown')
         # Immediately log the detected type to DB
@@ -254,10 +288,12 @@ class AgentOrchestrator:
                 f"Sample:\n{chunk_head}"
             )
             chunk_task = Task(
-                description=f"Analyze this dataset chunk and return quality_score and missing_percentage.\n{chunk_context}",
+                description=(
+                    f"Analyze this dataset chunk and return quality metrics.\n{chunk_context}\n\n"
+                    "Return ONLY a valid JSON object with keys: quality_score (number 0-100) and missing_percentage (number 0-100)."
+                ),
                 expected_output="JSON object containing quality_score and missing_percentage",
                 agent=agent,
-                output_json=QualityOutput
             )
             _kickoff_with_retry(Crew(agents=[agent], tasks=[chunk_task], process=Process.sequential, verbose=False))
             log_status(f'Quality Analysis (Chunk {i+1})', 'completed')
@@ -268,7 +304,7 @@ class AgentOrchestrator:
                 res = analyze_chunk(i, chunk)
                 chunk_results.append(res)
                 if i < len(chunks) - 1:
-                    time.sleep(4)  # Small delay between chunk calls
+                    time.sleep(2)
             except Exception as exc:
                 print(f"[chunk] Warning: {exc}")
 
@@ -285,6 +321,12 @@ class AgentOrchestrator:
             except Exception:
                 pass
 
+        # Fallback to calculated quality metrics if LLM didn't return numbers
+        if not scores:
+            scores.append(float(quality_metrics.get('completeness', 90)))
+        if not missings:
+            missings.append(float(quality_metrics.get('missing_percentage', 0)))
+
         avg_quality_score = sum(scores) / len(scores) if scores else 0.0
         avg_missing = sum(missings) / len(missings) if missings else 0.0
         quality_data = {'quality_score': avg_quality_score, 'missing_percentage': avg_missing}
@@ -292,20 +334,22 @@ class AgentOrchestrator:
         # ---- PHASE 3: Bias + Report (fresh agents, already created) -------
         log_status('Bias & Report Generation', 'running')
         bias_task = Task(
-            description=f"Detect statistical or representational biases in the dataset.\n{context_str}",
+            description=(
+                f"Detect statistical or representational biases in the dataset.\n{context_str}\n\n"
+                "Return ONLY a valid JSON object with keys: overall_bias_score (number 0-100) and detected_biases (list of strings)."
+            ),
             expected_output="JSON object containing overall_bias_score and list of detected_biases",
             agent=_bias,
-            output_json=BiasOutput
         )
         report_task = Task(
             description=(
-                f"Write an executive report. Aggregated quality score: {avg_quality_score:.1f}.\n{context_str}"
+                f"Write an executive report. Aggregated quality score: {avg_quality_score:.1f}.\n{context_str}\n\n"
+                "Return ONLY a valid JSON object with keys: executive_summary (object with 'overview', 'data_readiness', 'quality_status'), conclusion (string), recommendations_summary (list of 3-5 strings)."
             ),
-            expected_output="JSON object with executive_summary and conclusion",
+            expected_output="JSON object with executive_summary, conclusion, and recommendations_summary",
             agent=_report,
-            output_json=ReportOutput
         )
-        _kickoff_with_retry(Crew(agents=[_bias, _report], tasks=[bias_task, report_task], process=Process.sequential, verbose=True))
+        _kickoff_with_retry(Crew(agents=[_bias, _report], tasks=[bias_task, report_task], process=Process.sequential, verbose=False))
         log_status('Bias & Report Generation', 'completed')
 
         # ---- Assemble final result dict ------------------------------------

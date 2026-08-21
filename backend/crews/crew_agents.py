@@ -1,16 +1,29 @@
 import os
 from crewai import Agent, LLM
 from dotenv import load_dotenv
+import litellm
 
 load_dotenv(override=True)
+
+# Patch litellm completion to drop unsupported properties (like cache_breakpoint) for Groq
+_orig_litellm_completion = litellm.completion
+def _groq_safe_completion(*args, **kwargs):
+    if 'messages' in kwargs and isinstance(kwargs['messages'], list):
+        for msg in kwargs['messages']:
+            if isinstance(msg, dict):
+                msg.pop('cache_breakpoint', None)
+    return _orig_litellm_completion(*args, **kwargs)
+litellm.completion = _groq_safe_completion
 
 def get_llm():
     """Get LLM instance using Groq exclusively"""
     groq_key = os.getenv("GROQ_API_KEY")
     env_model = os.getenv("LLM_MODEL", "").strip()
 
-    model = env_model if env_model else "groq/llama-3.3-70b-versatile"
-    if not model.startswith("groq/") and "/" not in model:
+    model = env_model if env_model else "groq/openai/gpt-oss-120b"
+    if not model.startswith("groq/") and not model.startswith("openai/gpt-oss"):
+        model = f"groq/{model}"
+    elif model.startswith("openai/gpt-oss"):
         model = f"groq/{model}"
     
     return LLM(model=model, api_key=groq_key)

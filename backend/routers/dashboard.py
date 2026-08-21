@@ -24,31 +24,25 @@ def get_stats(db: Session = Depends(get_db)):
         Dataset.analysis_status.in_(["pending", "processing"])
     ).count()
 
-    recent_completed = db.query(Dataset).filter(
-        Dataset.analysis_status == "completed"
-    ).order_by(Dataset.updated_at.desc()).limit(5).all()
+    recent_datasets = db.query(Dataset).order_by(Dataset.uploaded_at.desc()).limit(5).all()
 
     recent_data = [{
         "id": str(d.id),
         "name": d.name,
-        "type": d.dataset_type,
+        "type": d.dataset_type or "mixed",
         "uploaded": d.uploaded_at.isoformat() if d.uploaded_at else datetime.now(timezone.utc).isoformat(),
         "rows": d.rows or 0,
         "columns": d.columns or 0,
-    } for d in recent_completed]
+    } for d in recent_datasets]
 
-    # Active logs: Check currently processing/pending dataset first
+    # Active logs: Check currently active / most recent dataset
     active_dataset = db.query(Dataset).filter(
         Dataset.analysis_status.in_(["pending", "processing"])
     ).order_by(Dataset.uploaded_at.desc()).first()
 
     if not active_dataset:
-        # Fallback to dataset updated within the last 5 minutes or latest completed
-        five_mins_ago = datetime.now(timezone.utc) - timedelta(minutes=5)
-        active_dataset = db.query(Dataset).filter(
-            Dataset.analysis_status.in_(["completed", "failed"]),
-            Dataset.updated_at >= five_mins_ago
-        ).order_by(Dataset.updated_at.desc()).first()
+        # Fallback to the latest dataset
+        active_dataset = db.query(Dataset).order_by(Dataset.uploaded_at.desc()).first()
 
     active_logs = []
     if active_dataset:
