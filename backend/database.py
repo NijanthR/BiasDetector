@@ -12,13 +12,18 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DB_FILE = os.path.join(BASE_DIR, "db.sqlite3")
 DATABASE_URL = os.getenv("DATABASE_URL", f"sqlite:///{DB_FILE}")
 
+# SQLAlchemy 2.0 requires 'postgresql://' instead of legacy 'postgres://' (used by Render/Heroku)
+if DATABASE_URL.startswith("postgres://"):
+    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
+
 # Connect args for SQLite to allow multi-threaded access (e.g. background threads)
 connect_args = {"check_same_thread": False} if DATABASE_URL.startswith("sqlite") else {}
 
 engine = create_engine(
     DATABASE_URL,
     connect_args=connect_args,
-    echo=False
+    echo=False,
+    pool_pre_ping=True
 )
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)

@@ -22,10 +22,10 @@ RUN pip install --upgrade pip && \
 COPY . .
 
 # Create necessary directories
-RUN mkdir -p /app/uploads /app/reports
+RUN mkdir -p /app/uploads/datasets /app/reports
 
-# Expose port
+# Expose default port
 EXPOSE 8000
 
-# Run uvicorn
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Run uvicorn supporting dynamic $PORT on Render
+CMD sh -c "uvicorn main:app --host 0.0.0.0 --port ${PORT:-8000}"

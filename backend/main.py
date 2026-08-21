@@ -43,18 +43,26 @@ app = FastAPI(
 
 # CORS Configuration
 cors_env = os.getenv("CORS_ALLOWED_ORIGINS", "")
-allowed_origins = [o.strip() for o in cors_env.split(",") if o.strip()] if cors_env else [
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    "http://localhost:8000",
-]
+if cors_env.strip():
+    allowed_origins = [o.strip() for o in cors_env.split(",") if o.strip()]
+else:
+    allowed_origins = [
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        "http://localhost:8000",
+    ]
+
+# If wildcard is requested, allow_credentials must be False per CORS spec
+is_wildcard = "*" in allowed_origins
+allow_origin_regex = os.getenv("CORS_ALLOW_ORIGIN_REGEX", r"https://.*\.vercel\.app")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=allowed_origins if allowed_origins else ["*"],
-    allow_credentials=True,
+    allow_origins=allowed_origins,
+    allow_origin_regex=None if is_wildcard else allow_origin_regex,
+    allow_credentials=not is_wildcard,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -91,4 +99,7 @@ def health_check():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+    port = int(os.getenv("PORT", 8000))
+    host = os.getenv("HOST", "0.0.0.0")
+    debug = os.getenv("DEBUG", "False").lower() in ("true", "1")
+    uvicorn.run("main:app", host=host, port=port, reload=debug)
