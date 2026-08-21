@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: dataset_platform_backend
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    environment:
+      DEBUG: 'False'
+      CORS_ALLOWED_ORIGINS: http://localhost:5173,http://localhost:3000,http://frontend:5173
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+      - backend_uploads:/app/uploads
+      - backend_reports:/app/reports
+    networks:
+      - platform_network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: dataset_platform_frontend
+    environment:
+      VITE_API_BASE_URL: http://backend:8000/api
+      VITE_APP_NAME: Dataset Analysis Platform
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+    networks:
+      - platform_network
+
+volumes:
+  backend_uploads:
+  backend_reports:
+
+networks:
+  platform_network:
+    driver: bridge

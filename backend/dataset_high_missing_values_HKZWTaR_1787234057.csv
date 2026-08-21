@@ -1,0 +1,301 @@
+review_id,review_text,sentiment,rating,user_age,product,region,verified,likes,date
+1,,positive,5,41,,East,No,,2026-06-01
+2,Loved it,positive,2,,Laptop,,No,,
+3,Amazing product,,2,22,Book,South,,407,2026-06-03
+4,,positive,3,,Laptop,South,Yes,4,2026-06-04
+5,Excellent quality,positive,3,40,Book,South,No,176,2026-06-05
+6,,positive,4,40,,East,Yes,,2026-06-06
+7,,positive,,,Laptop,,No,,
+8,Excellent quality,positive,5,,Phone,,No,156,2026-06-08
+9,Excellent quality,,2,,Laptop,,,129,2026-06-09
+10,Amazing product,,3,24,,,,2,
+11,Excellent quality,positive,3,,Book,East,Yes,141,
+12,Excellent quality,,3,40,Laptop,,No,446,2026-06-12
+13,Loved it,positive,3,,,West,,,2026-06-13
+14,Loved it,positive,2,,Book,,Yes,,2026-06-14
+15,Loved it,positive,,,Laptop,North,Yes,,2026-06-15
+16,,,5,,,West,,256,2026-06-16
+17,Excellent quality,positive,2,31,,South,,388,2026-06-17
+18,Amazing product,positive,5,28,,West,Yes,,
+19,Amazing product,positive,2,40,,South,Yes,62,2026-06-19
+20,,,3,,Phone,,No,268,2026-06-20
+21,,positive,5,49,,South,,,2026-06-21
+22,Excellent quality,positive,4,31,Book,North,No,306,2026-06-22
+23,Loved it,positive,2,,Laptop,East,Yes,,
+24,Amazing product,positive,1,60,Book,,Yes,,2026-06-24
+25,Loved it,positive,1,,,,Yes,,
+26,,positive,5,,Phone,,No,,2026-06-26
+27,Loved it,positive,,,Book,West,,422,2026-06-27
+28,Excellent quality,positive,2,36,Phone,,No,,
+29,Excellent quality,positive,,,Laptop,West,Yes,,
+30,,positive,,48,,,Yes,283,2026-06-02
+31,Loved it,positive,1,32,Book,West,No,217,2026-06-03
+32,Loved it,,3,32,,,No,,2026-06-04
+33,Loved it,positive,1,,Laptop,North,No,,
+34,,positive,1,,Book,West,,,2026-06-06
+35,,positive,,,Laptop,West,No,229,2026-06-07
+36,,positive,4,,Laptop,,,403,2026-06-08
+37,Amazing product,positive,5,23,Laptop,North,No,,2026-06-09
+38,,,3,,Book,South,No,,
+39,Amazing product,positive,4,24,Laptop,South,No,285,2026-06-11
+40,Amazing product,positive,5,,,,Yes,84,2026-06-12
+41,Amazing product,positive,,,,,Yes,77,
+42,Amazing product,positive,,,Book,,,,
+43,Loved it,positive,4,,,,Yes,,2026-06-15
+44,Excellent quality,positive,5,30,,,Yes,,2026-06-16
+45,Excellent quality,positive,2,,Laptop,West,No,,2026-06-17
+46,Excellent quality,positive,4,34,,South,No,,2026-06-18
+47,Loved it,positive,5,,,East,,,2026-06-19
+48,Amazing product,positive,5,51,,,Yes,,2026-06-20
+49,Excellent quality,positive,,55,,East,,176,2026-06-21
+50,,positive,,48,,East,No,,
+51,,positive,,,,North,Yes,102,2026-06-23
+52,Loved it,positive,3,,Phone,,Yes,285,2026-06-24
+53,Excellent quality,positive,3,,Laptop,,Yes,22,
+54,Amazing product,positive,2,29,Laptop,East,Yes,,2026-06-26
+55,Loved it,positive,3,,,South,Yes,,2026-06-27
+56,Excellent quality,positive,4,,,West,Yes,,
+57,,,3,32,Laptop,North,Yes,47,2026-06-01
+58,,positive,1,,Book,,,,2026-06-02
+59,Amazing product,positive,,,Phone,West,,,
+60,Loved it,positive,,31,,West,No,441,2026-06-04
+61,Loved it,,,37,Laptop,North,No,,2026-06-05
+62,Amazing product,positive,5,,Phone,North,No,,
+63,Excellent quality,positive,,,,East,Yes,477,2026-06-07
+64,Amazing product,positive,4,,Book,,No,199,
+65,Amazing product,positive,5,44,,North,,70,
+66,Excellent quality,positive,5,30,,South,,218,2026-06-10
+67,Excellent quality,positive,4,,Book,,,,2026-06-11
+68,Loved it,positive,,,Laptop,East,Yes,,2026-06-12
+69,Amazing product,positive,4,,Laptop,West,No,,
+70,Excellent quality,positive,5,,,,Yes,257,2026-06-14
+71,Loved it,positive,,,Book,,Yes,,2026-06-15
+72,Amazing product,,,35,,,No,,
+73,,positive,1,49,Laptop,,No,281,
+74,Loved it,positive,3,56,Laptop,North,Yes,124,
+75,Loved it,positive,1,,,,Yes,,
+76,Loved it,positive,4,,,East,Yes,333,
+77,,positive,4,31,Book,South,Yes,,2026-06-21
+78,,,5,,,South,Yes,50,
+79,Loved it,positive,4,27,Book,South,Yes,432,
+80,Amazing product,positive,4,,Phone,East,No,23,2026-06-24
+81,,positive,3,40,Phone,South,No,,2026-06-25
+82,Loved it,positive,5,19,Book,North,Yes,180,2026-06-26
+83,,,4,39,Book,,No,463,2026-06-27
+84,,positive,2,22,,North,No,,2026-06-28
+85,Amazing product,positive,1,54,,,,348,2026-06-01
+86,,positive,1,18,Phone,,,,2026-06-02
+87,Amazing product,positive,,42,,West,Yes,39,2026-06-03
+88,,positive,3,,,North,Yes,310,2026-06-04
+89,Excellent quality,positive,4,36,Laptop,East,No,,
+90,Amazing product,positive,4,58,Laptop,West,No,,2026-06-06
+91,Amazing product,positive,3,29,Laptop,,,,2026-06-07
+92,,positive,5,,Laptop,,,,2026-06-08
+93,,positive,5,,Book,,No,,2026-06-09
+94,Amazing product,positive,,43,Phone,,No,,2026-06-10
+95,Amazing product,positive,3,,Book,East,No,187,2026-06-11
+96,Loved it,positive,4,34,Laptop,,No,158,
+97,,positive,1,47,Phone,West,No,114,
+98,Excellent quality,positive,3,20,,West,,,2026-06-14
+99,Amazing product,positive,1,25,Phone,West,Yes,,2026-06-15
+100,Amazing product,positive,5,45,Phone,,No,100,2026-06-16
+101,Amazing product,positive,,,Phone,East,No,493,
+102,Loved it,positive,,36,,East,No,,2026-06-18
+103,Amazing product,positive,1,,Laptop,South,No,218,2026-06-19
+104,Loved it,positive,2,60,Phone,West,Yes,,
+105,,positive,3,46,,,Yes,77,2026-06-21
+106,,positive,1,27,Phone,South,,323,2026-06-22
+107,,positive,2,,,East,No,,2026-06-23
+108,Loved it,positive,5,42,Phone,South,Yes,,2026-06-24
+109,Excellent quality,positive,3,23,,,,,
+110,Excellent quality,,3,22,Phone,South,Yes,290,2026-06-26
+111,,positive,1,,Phone,East,Yes,120,2026-06-27
+112,Excellent quality,positive,4,,,,,202,
+113,Loved it,,,25,Phone,South,,,2026-06-01
+114,Excellent quality,,2,36,,,Yes,,2026-06-02
+115,Loved it,positive,3,35,Book,,,,2026-06-03
+116,Loved it,positive,4,20,Book,,,355,2026-06-04
+117,Amazing product,,5,24,Book,,Yes,,2026-06-05
+118,Loved it,positive,4,,Book,East,,124,
+119,Loved it,,2,,Phone,East,Yes,,
+120,Amazing product,positive,,,Phone,,No,,2026-06-08
+121,Excellent quality,positive,,59,,,,70,2026-06-09
+122,Excellent quality,positive,5,,Book,,Yes,190,2026-06-10
+123,,positive,2,34,Laptop,,Yes,,2026-06-11
+124,Loved it,positive,,50,Phone,,Yes,467,2026-06-12
+125,Amazing product,positive,3,,Phone,East,Yes,,
+126,Amazing product,positive,4,49,,,Yes,104,2026-06-14
+127,Excellent quality,positive,,51,Laptop,,Yes,,2026-06-15
+128,Excellent quality,positive,4,,Phone,,No,194,2026-06-16
+129,Loved it,,,57,Book,North,,145,
+130,Excellent quality,positive,3,,,North,No,145,2026-06-18
+131,Excellent quality,,3,,,East,,,2026-06-19
+132,Amazing product,positive,4,,Laptop,West,Yes,,2026-06-20
+133,,positive,4,,Laptop,,Yes,,
+134,,positive,5,,Laptop,,Yes,,2026-06-22
+135,Loved it,,1,,Phone,South,Yes,,2026-06-23
+136,,positive,1,38,,North,Yes,,2026-06-24
+137,,positive,,43,Phone,North,No,,
+138,Amazing product,positive,3,,Laptop,,Yes,159,2026-06-26
+139,Excellent quality,positive,,58,Laptop,,,407,2026-06-27
+140,Excellent quality,positive,2,,Phone,West,,47,2026-06-28
+141,Excellent quality,positive,2,18,,East,No,,2026-06-01
+142,Loved it,positive,1,42,,,Yes,334,2026-06-02
+143,,,1,23,Phone,,No,,2026-06-03
+144,Loved it,positive,,,Phone,,No,,2026-06-04
+145,Loved it,positive,4,,Book,South,Yes,130,
+146,Loved it,positive,,,Phone,East,,261,2026-06-06
+147,Amazing product,positive,1,54,Book,,No,,2026-06-07
+148,,positive,4,60,Phone,South,Yes,,
+149,Amazing product,positive,1,,Phone,West,Yes,,2026-06-09
+150,Excellent quality,positive,4,,,,,131,2026-06-10
+151,Amazing product,positive,1,39,Phone,West,No,174,
+152,Excellent quality,positive,2,,Laptop,North,Yes,322,
+153,Amazing product,positive,3,,Book,East,Yes,,2026-06-13
+154,Excellent quality,positive,2,60,Phone,West,,,2026-06-14
+155,Amazing product,positive,,52,,East,,,
+156,Loved it,positive,2,42,,East,No,171,
+157,Loved it,positive,3,40,Book,,,,2026-06-17
+158,Amazing product,positive,5,,Laptop,,,359,2026-06-18
+159,Loved it,positive,1,32,Laptop,,Yes,,2026-06-19
+160,,positive,3,,Phone,North,No,118,2026-06-20
+161,,neutral,3,36,,West,Yes,210,
+162,Average experience,neutral,5,23,,,Yes,372,
+163,,neutral,1,19,,,Yes,,2026-06-23
+164,,neutral,4,,Phone,North,,420,2026-06-24
+165,,,3,,,North,,445,
+166,,,,39,Book,East,Yes,,2026-06-26
+167,Average experience,,2,,,South,Yes,285,2026-06-27
+168,,neutral,4,,,East,,23,2026-06-28
+169,Average experience,neutral,5,39,Laptop,East,Yes,,
+170,,neutral,5,26,,,No,161,
+171,Okay product,neutral,5,,Laptop,,Yes,,2026-06-03
+172,Average experience,neutral,3,56,,,,270,2026-06-04
+173,Okay product,neutral,4,,Book,,,,2026-06-05
+174,Average experience,neutral,3,,,West,No,325,2026-06-06
+175,,neutral,5,60,Book,East,,,
+176,Okay product,neutral,5,51,Book,West,No,118,2026-06-08
+177,Okay product,neutral,3,,Laptop,,Yes,,2026-06-09
+178,Average experience,neutral,,33,Phone,South,,,2026-06-10
+179,Okay product,neutral,3,51,,,No,,2026-06-11
+180,Average experience,neutral,5,31,,,Yes,,2026-06-12
+181,Okay product,neutral,5,,Laptop,,Yes,66,2026-06-13
+182,Okay product,neutral,1,39,,West,Yes,85,
+183,,neutral,1,18,Laptop,,No,74,2026-06-15
+184,Average experience,neutral,,43,,,No,,
+185,Average experience,neutral,5,33,,North,No,223,2026-06-17
+186,,neutral,4,57,Phone,West,,,
+187,Average experience,neutral,,,Book,,No,461,2026-06-19
+188,Okay product,neutral,,53,,North,Yes,230,2026-06-20
+189,Okay product,,1,,,,Yes,,2026-06-21
+190,,neutral,1,21,Book,,,267,2026-06-22
+191,Okay product,neutral,,47,Book,South,No,228,2026-06-23
+192,,neutral,,,,South,Yes,172,2026-06-24
+193,Average experience,neutral,3,,Phone,East,Yes,,2026-06-25
+194,Average experience,neutral,4,23,Phone,West,,169,2026-06-26
+195,,neutral,3,54,,,No,279,2026-06-27
+196,Okay product,neutral,2,49,Laptop,,,493,2026-06-28
+197,,neutral,5,38,,South,Yes,,2026-06-01
+198,,neutral,,60,Phone,East,Yes,9,2026-06-02
+199,Average experience,neutral,5,,,East,No,,2026-06-03
+200,,neutral,3,,Laptop,South,Yes,,2026-06-04
+201,Okay product,neutral,2,35,Book,,,320,2026-06-05
+202,,neutral,5,,Phone,,,115,2026-06-06
+203,Average experience,neutral,1,52,,South,Yes,379,
+204,Okay product,,,58,,North,No,,2026-06-08
+205,Average experience,neutral,4,18,Phone,,Yes,275,2026-06-09
+206,Okay product,neutral,,,Book,,No,,2026-06-10
+207,Okay product,,2,55,Laptop,,,,2026-06-11
+208,Average experience,neutral,1,,Laptop,South,Yes,177,2026-06-12
+209,Okay product,neutral,2,44,Phone,,No,235,2026-06-13
+210,Okay product,neutral,5,,,,Yes,411,2026-06-14
+211,Okay product,neutral,1,44,Book,,No,430,2026-06-15
+212,Average experience,,1,26,,East,,,
+213,Average experience,neutral,2,,Phone,,,,2026-06-17
+214,Okay product,neutral,1,35,Phone,,No,,2026-06-18
+215,Okay product,neutral,,47,Laptop,South,No,120,2026-06-19
+216,,neutral,5,,Laptop,,No,279,
+217,Okay product,neutral,2,24,Book,West,Yes,336,2026-06-21
+218,,neutral,3,,,North,No,,2026-06-22
+219,Okay product,neutral,1,30,Book,East,No,133,2026-06-23
+220,Okay product,,,43,Book,West,No,497,
+221,,neutral,1,54,Phone,,Yes,,
+222,Average experience,neutral,3,24,,North,No,,2026-06-26
+223,Average experience,neutral,2,52,,,Yes,247,2026-06-27
+224,,neutral,,,Laptop,North,,,
+225,Okay product,neutral,3,24,Phone,East,,,
+226,,neutral,1,,Book,West,No,189,2026-06-02
+227,Okay product,neutral,2,46,,,,,2026-06-03
+228,,neutral,5,43,,North,,,2026-06-04
+229,,neutral,2,57,,South,Yes,,2026-06-05
+230,Okay product,neutral,,56,Book,West,No,1,2026-06-06
+231,,,5,50,Laptop,South,Yes,11,2026-06-07
+232,,neutral,5,19,Phone,South,Yes,,2026-06-08
+233,,neutral,3,,,,Yes,,2026-06-09
+234,Okay product,neutral,5,,Book,North,No,,2026-06-10
+235,,neutral,2,31,Book,,No,,2026-06-11
+236,Okay product,neutral,4,24,Book,North,,484,
+237,Average experience,neutral,2,,Book,East,No,196,
+238,,neutral,,,Book,East,,,2026-06-14
+239,Okay product,neutral,,41,,North,,472,2026-06-15
+240,Average experience,neutral,4,,,West,,,2026-06-16
+241,Very disappointed,negative,,42,,North,Yes,129,2026-06-17
+242,,,3,,Book,North,No,,2026-06-18
+243,,negative,5,25,Phone,South,No,265,2026-06-19
+244,Bad quality,negative,,,Book,East,No,131,2026-06-20
+245,Very disappointed,negative,5,,,South,No,276,2026-06-21
+246,Very disappointed,negative,3,29,,South,,,
+247,Very disappointed,negative,1,47,Book,East,No,22,
+248,Bad quality,negative,,56,Laptop,,Yes,,
+249,Very disappointed,negative,,57,,,No,,2026-06-25
+250,Very disappointed,negative,5,55,Phone,East,Yes,468,
+251,Bad quality,,3,24,Book,North,,,2026-06-27
+252,Bad quality,negative,1,,,,,,2026-06-28
+253,,,2,,Book,,No,,
+254,,negative,5,18,Phone,West,Yes,,2026-06-02
+255,Bad quality,negative,3,60,Phone,,No,,2026-06-03
+256,Bad quality,negative,1,,Phone,,No,382,2026-06-04
+257,Very disappointed,negative,5,52,Book,West,Yes,,2026-06-05
+258,Very disappointed,negative,4,52,Book,,Yes,,2026-06-06
+259,Bad quality,negative,4,26,Laptop,,Yes,,2026-06-07
+260,Very disappointed,negative,,56,Phone,,No,245,2026-06-08
+261,Very disappointed,negative,2,,Laptop,West,Yes,,2026-06-09
+262,Bad quality,negative,5,43,Laptop,,Yes,83,2026-06-10
+263,Bad quality,,4,57,Phone,,,360,
+264,Bad quality,negative,4,44,Phone,,Yes,,2026-06-12
+265,,negative,1,28,Book,,No,340,
+266,,negative,3,,Laptop,,No,416,2026-06-14
+267,Bad quality,negative,1,,,,No,,
+268,Very disappointed,,4,,Book,,Yes,217,
+269,Bad quality,negative,3,,,East,,,2026-06-17
+270,Very disappointed,negative,3,44,Book,South,,133,2026-06-18
+271,Very disappointed,negative,2,,,East,,449,
+272,Bad quality,negative,3,52,Book,,No,,2026-06-20
+273,Very disappointed,negative,4,,Book,West,,486,
+274,Bad quality,negative,2,,,,No,,2026-06-22
+275,Bad quality,negative,2,,,North,,435,2026-06-23
+276,Very disappointed,negative,3,26,,West,No,148,2026-06-24
+277,Very disappointed,negative,3,49,Book,,Yes,218,2026-06-25
+278,Very disappointed,negative,3,35,,South,No,153,2026-06-26
+279,,,4,,,South,No,,
+280,Very disappointed,negative,4,33,Book,,No,,2026-06-28
+281,Bad quality,negative,2,53,Laptop,South,,,2026-06-01
+282,Very disappointed,negative,3,39,Book,,Yes,264,2026-06-02
+283,Very disappointed,,4,31,Phone,South,Yes,263,2026-06-03
+284,,negative,3,38,Laptop,South,,376,
+285,Bad quality,negative,4,,Book,,Yes,128,2026-06-05
+286,Very disappointed,negative,2,48,Book,South,Yes,,2026-06-06
+287,Bad quality,negative,,,Book,,Yes,,2026-06-07
+288,Very disappointed,negative,,,Book,,No,86,2026-06-08
+289,Very disappointed,negative,4,59,Laptop,East,,,2026-06-09
+290,,negative,3,48,Book,West,,,2026-06-10
+291,Very disappointed,negative,3,,Phone,West,,218,2026-06-11
+292,,negative,1,46,Phone,,,,2026-06-12
+293,Very disappointed,negative,4,32,,North,No,294,2026-06-13
+294,,negative,,,Laptop,,No,210,
+295,,negative,5,,,,Yes,,2026-06-15
+296,Very disappointed,negative,1,42,Phone,West,No,,2026-06-16
+297,Very disappointed,,5,22,Phone,,No,,
+298,,negative,4,49,,,No,,2026-06-18
+299,,negative,5,,Book,East,,,2026-06-19
+300,Bad quality,negative,5,44,,West,No,,2026-06-20

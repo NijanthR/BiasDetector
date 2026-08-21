@@ -1,0 +1,301 @@
+review_id,timestamp,user_age,rating,purchase_amount,category,country,review_text,sentiment,is_returned
+1,2025-01-01,19,5,2947.04,Books,India,Great product,Positive,1
+2,2025-01-02,19,4,2375.56,Electronics,UK,Excellent quality,Positive,1
+3,2025-01-03,46,5,3082.92,Home,India,Loved it,Positive,0
+4,2025-01-04,39,4,3870.73,Electronics,India,Loved it,Positive,0
+5,2025-01-05,47,4,2289.26,Fashion,UK,Loved it,Positive,0
+6,2025-01-06,20,4,2289.28,Books,India,Very useful,Positive,0
+7,2025-01-07,58,3,3921.29,Fashion,India,Works as expected,Neutral,0
+8,2025-01-08,52,4,,Home,India,Excellent quality,Positive,0
+9,2025-01-09,32,4,2077.47,Fashion,India,Excellent quality,Positive,0
+10,2025-01-10,59,5,2988.3,Books,India,Excellent quality,Positive,0
+11,2025-01-11,52,2,2082.92,Fashion,India,Not satisfied,Negative,1
+12,2025-01-12,21,4,2080.84,Home,UK,Great product,Positive,1
+13,2025-01-13,56,4,2717.77,Electronics,UK,Works as expected,Neutral,0
+14,2025-01-14,36,5,,Electronics,India,Excellent quality,Positive,0
+15,2025-01-15,58,4,947.57,Books,UK,Great product,Positive,0
+16,2025-01-16,19,2,1993.94,Books,India,Not satisfied,Negative,0
+17,2025-01-17,49,4,1588.45,Home,UK,Excellent quality,Positive,0
+18,2025-01-18,56,1,2782.82,Fashion,USA,Poor experience,Negative,1
+19,2025-01-19,46,1,1682.78,Electronics,India,Bad quality,Negative,0
+20,2025-01-20,18,4,1228.93,Electronics,India,Loved it,Positive,0
+21,2025-01-21,33,1,3819.08,Books,UK,Waste of money,Negative,0
+22,2025-01-22,44,3,2296.8,Home,India,Nothing special,Neutral,1
+23,2025-01-23,21,3,2560.78,Fashion,India,Okay,Neutral,0
+24,2025-01-24,52,5,1217.73,Books,India,Very useful,Positive,0
+25,2025-01-25,46,4,2010.06,Electronics,India,Excellent quality,Positive,1
+26,2025-01-26,48,4,2599.83,Books,USA,Average experience,Neutral,1
+27,2025-01-27,47,5,1464.11,Books,India,Loved it,Positive,0
+28,2025-01-28,55,4,2838.13,Electronics,UK,Very useful,Positive,0
+29,2025-01-29,50,4,1959.43,Electronics,India,Very useful,Positive,0
+30,2025-01-30,33,2,,Fashion,India,Not satisfied,Negative,0
+31,2025-01-31,34,5,1958.46,Home,India,Great product,Positive,0
+32,2025-02-01,57,3,4167.05,Fashion,India,Works as expected,Neutral,0
+33,2025-02-02,41,5,2487.85,Fashion,UK,Great product,Positive,0
+34,2025-02-03,26,5,1548.06,Books,India,Loved it,Positive,0
+35,2025-02-04,31,4,3240.29,Electronics,India,Nothing special,Neutral,0
+36,2025-02-05,18,5,1401.24,Books,USA,Very useful,Positive,0
+37,2025-02-06,22,4,2687.98,Books,USA,Excellent quality,Positive,0
+38,2025-02-07,41,4,736.3,Books,India,Loved it,Positive,1
+39,2025-02-08,33,4,1304.63,Electronics,India,Loved it,Positive,1
+40,2025-02-09,35,4,2677.18,Electronics,USA,Excellent quality,Positive,0
+41,2025-02-10,40,3,3164.62,Electronics,India,Nothing special,Neutral,0
+42,2025-02-11,22,5,2654.23,Fashion,India,Great product,Positive,0
+43,2025-02-12,55,5,2395.92,Home,India,Loved it,Positive,1
+44,2025-02-13,25,2,2229.01,Electronics,USA,Bad quality,Negative,0
+45,2025-02-14,45,4,1169.33,Electronics,India,Works as expected,Neutral,1
+46,2025-02-15,43,5,1852.14,Home,USA,Excellent quality,Positive,0
+47,2025-02-16,53,4,2085.43,Books,USA,Works as expected,Neutral,1
+48,2025-02-17,46,4,3451.41,Electronics,India,Works as expected,Neutral,0
+49,2025-02-18,37,4,2809.26,Electronics,India,Excellent quality,Positive,1
+50,2025-02-19,47,5,913.26,Home,USA,Excellent quality,Positive,0
+51,2025-02-20,24,5,2791.68,Home,India,Excellent quality,Positive,0
+52,2025-02-21,26,4,2153.43,Home,UK,Nothing special,Neutral,0
+53,2025-02-22,46,3,1890.77,Home,India,Works as expected,Neutral,1
+54,2025-02-23,36,4,3050.51,Fashion,UK,Great product,Positive,0
+55,2025-02-24,32,5,3427.9,Electronics,USA,Very useful,Positive,0
+56,2025-02-25,47,1,3338.15,Home,USA,Bad quality,Negative,1
+57,2025-02-26,18,4,1744.7,Home,UK,Okay,Neutral,1
+58,2025-02-27,35,5,2221.71,Home,India,Very useful,Positive,0
+59,2025-02-28,26,4,2798.14,Electronics,USA,Okay,Neutral,1
+60,2025-03-01,21,5,3377.99,Books,USA,Loved it,Positive,0
+61,2025-03-02,35,4,2068.74,Home,India,Average experience,Neutral,0
+62,2025-03-03,59,4,2332.91,Books,India,Great product,Positive,0
+63,2025-03-04,26,5,1504.3,Home,India,Loved it,Positive,0
+64,2025-03-05,28,5,1423.41,Fashion,UK,Very useful,Positive,1
+65,2025-03-06,22,4,3231.27,Electronics,UK,Great product,Positive,0
+66,2025-03-07,45,2,3720.62,Electronics,USA,Waste of money,Negative,0
+67,2025-03-08,41,3,2435.19,Books,UK,Works as expected,Neutral,1
+68,2025-03-09,45,4,3403.18,Electronics,India,Nothing special,Neutral,0
+69,2025-03-10,54,4,2825.47,Home,India,Okay,Neutral,1
+70,2025-03-11,40,5,1919.39,Fashion,UK,Great product,Positive,0
+71,2025-03-12,33,5,2825.26,Home,USA,Very useful,Positive,0
+72,2025-03-13,36,4,3884.23,Fashion,UK,Loved it,Positive,1
+73,2025-03-14,51,2,2467.76,Fashion,USA,Poor experience,Negative,0
+74,2025-03-15,32,4,3908.18,Electronics,UK,,Positive,0
+75,2025-03-16,48,5,142.23,Books,India,Excellent quality,Positive,0
+76,2025-03-17,37,4,3239.71,Electronics,India,Loved it,Positive,0
+77,2025-03-18,24,2,2578.34,Home,USA,Poor experience,Negative,0
+78,2025-03-19,34,5,2230.89,Home,USA,Great product,Positive,0
+79,2025-03-20,27,5,2582.58,Electronics,UK,Very useful,Positive,0
+80,2025-03-21,42,2,711.19,Home,India,Bad quality,Negative,0
+81,2025-03-22,58,4,2302.3,Books,India,Excellent quality,Positive,0
+82,2025-03-23,18,5,2821.4,Fashion,India,Excellent quality,Positive,0
+83,2025-03-24,47,4,3830.1,Books,USA,Great product,Positive,0
+84,2025-03-25,35,4,2033.56,Books,India,Loved it,Positive,1
+85,2025-03-26,47,5,1772.36,Home,USA,Great product,Positive,0
+86,2025-03-27,38,3,2048.42,Books,UK,Average experience,Neutral,0
+87,2025-03-28,20,2,3323.86,Fashion,India,Waste of money,Negative,1
+88,2025-03-29,48,5,2795.88,Fashion,India,Excellent quality,Positive,0
+89,2025-03-30,49,4,2023.22,Home,India,Works as expected,Neutral,0
+90,2025-03-31,25,5,2961.94,Home,India,Excellent quality,Positive,0
+91,2025-01-01,58,1,2587.37,Fashion,UK,Not satisfied,Negative,0
+92,2025-01-02,49,3,3371.78,Books,India,Average experience,Neutral,1
+93,2025-01-03,32,4,1868.15,Books,USA,Loved it,Positive,0
+94,2025-01-04,48,3,2205.1,Books,USA,Okay,Neutral,0
+95,2025-01-05,35,5,2147.1,Electronics,India,Loved it,Positive,1
+96,2025-01-06,46,5,1182.84,Home,USA,Loved it,Positive,0
+97,2025-01-07,54,5,2766.51,Electronics,India,Very useful,Positive,1
+98,2025-01-08,60,4,2734.95,Books,UK,Works as expected,Neutral,0
+99,2025-01-09,24,3,,Home,India,Average experience,Neutral,1
+100,2025-01-10,39,5,2288.87,Home,India,Very useful,Positive,0
+101,2025-01-11,33,5,1226.17,Home,India,Great product,Positive,1
+102,2025-01-12,37,4,2121.42,Electronics,India,Loved it,Positive,0
+103,2025-01-13,27,4,2191.56,Books,India,Average experience,Neutral,1
+104,2025-01-14,49,4,1777.95,Fashion,USA,Loved it,Positive,0
+105,2025-01-15,36,3,2354.84,Fashion,UK,Works as expected,Neutral,1
+106,2025-01-16,47,5,2863.65,Home,India,Excellent quality,Positive,1
+107,2025-01-17,40,1,4197.57,Home,India,,Negative,0
+108,2025-01-18,36,1,2657.12,Books,UK,Poor experience,Negative,0
+109,2025-01-19,58,4,2731.8,Electronics,UK,Loved it,Positive,0
+110,2025-01-20,36,5,2433.0,Books,India,Loved it,Positive,0
+111,2025-01-21,34,5,773.11,Electronics,USA,Great product,Positive,0
+112,2025-01-22,43,5,2476.14,Electronics,India,Great product,Positive,1
+113,2025-01-23,34,4,2554.21,Books,USA,Average experience,Neutral,0
+114,2025-01-24,59,4,4716.92,Home,India,Excellent quality,Positive,0
+115,2025-01-25,37,5,2326.88,Books,UK,Excellent quality,Positive,1
+116,2025-01-26,41,3,2771.39,Electronics,USA,Nothing special,Neutral,0
+117,2025-01-27,41,4,2468.76,Books,India,Great product,Positive,0
+118,2025-01-28,59,2,1448.19,Fashion,India,Bad quality,Negative,1
+119,2025-01-29,60,4,3528.54,Fashion,India,Excellent quality,Positive,0
+120,2025-01-30,53,4,3176.74,Fashion,India,Great product,Positive,0
+121,2025-01-31,26,5,3211.93,Electronics,India,Great product,Positive,0
+122,2025-02-01,55,5,1681.55,Fashion,India,Excellent quality,Positive,1
+123,2025-02-02,25,2,3762.51,Fashion,UK,Bad quality,Negative,1
+124,2025-02-03,32,2,1238.33,Electronics,India,,Negative,1
+125,2025-02-04,24,4,3028.17,Electronics,India,Okay,Neutral,0
+126,2025-02-05,35,5,4471.41,Home,UK,Very useful,Positive,0
+127,2025-02-06,59,4,1608.52,Books,USA,Loved it,Positive,1
+128,2025-02-07,44,4,1990.33,Fashion,India,,Neutral,0
+129,2025-02-08,22,3,2589.69,Home,India,Works as expected,Neutral,0
+130,2025-02-09,21,2,2046.87,Fashion,USA,Bad quality,Negative,0
+131,2025-02-10,40,4,1104.4,Home,India,Great product,Positive,0
+132,2025-02-11,41,1,2561.71,Home,UK,Bad quality,Negative,0
+133,2025-02-12,29,5,1543.93,Fashion,India,Excellent quality,Positive,0
+134,2025-02-13,60,1,2926.23,Electronics,India,Not satisfied,Negative,1
+135,2025-02-14,47,3,1672.52,Fashion,India,Average experience,Neutral,0
+136,2025-02-15,28,4,3894.94,Home,USA,Very useful,Positive,1
+137,2025-02-16,35,3,1795.07,Home,India,Works as expected,Neutral,1
+138,2025-02-17,60,1,2210.14,Home,UK,Bad quality,Negative,0
+139,2025-02-18,37,4,3232.17,Fashion,India,Great product,Positive,0
+140,2025-02-19,45,2,1392.22,Books,UK,Poor experience,Negative,0
+141,2025-02-20,20,3,2704.71,Electronics,India,Nothing special,Neutral,1
+142,2025-02-21,36,4,3676.43,Fashion,India,Nothing special,Neutral,0
+143,2025-02-22,45,4,1053.27,Home,UK,Great product,Positive,1
+144,2025-02-23,39,4,2666.17,Electronics,UK,Great product,Positive,0
+145,2025-02-24,40,3,2733.89,Books,India,Okay,Neutral,0
+146,2025-02-25,59,4,3203.64,Home,UK,Very useful,Positive,0
+147,2025-02-26,27,5,1386.74,Home,India,Loved it,Positive,0
+148,2025-02-27,50,4,1311.59,Home,India,,Neutral,0
+149,2025-02-28,22,4,2969.75,Electronics,USA,Excellent quality,Positive,0
+150,2025-03-01,50,3,2767.29,Electronics,India,Average experience,Neutral,0
+151,2025-03-02,33,5,2725.44,Fashion,India,Loved it,Positive,1
+152,2025-03-03,39,4,2811.8,Fashion,India,Nothing special,Neutral,0
+153,2025-03-04,60,4,1887.98,Books,India,Loved it,Positive,1
+154,2025-03-05,56,4,2709.03,Fashion,India,Great product,Positive,1
+155,2025-03-06,41,2,2763.77,Books,India,Poor experience,Negative,1
+156,2025-03-07,32,4,1857.08,Fashion,India,Great product,Positive,0
+157,2025-03-08,56,5,4179.2,Books,UK,Excellent quality,Positive,1
+158,2025-03-09,44,5,2926.45,Fashion,USA,Excellent quality,Positive,0
+159,2025-03-10,48,4,1427.83,Home,India,Very useful,Positive,1
+160,2025-03-11,30,4,3090.9,Home,India,Great product,Positive,0
+161,2025-03-12,23,4,1622.79,Books,USA,Great product,Positive,0
+162,2025-03-13,40,4,3208.38,Home,UK,Works as expected,Neutral,0
+163,2025-03-14,23,3,3542.74,Fashion,India,Works as expected,Neutral,0
+164,2025-03-15,20,5,1761.39,Home,USA,Great product,Positive,0
+165,2025-03-16,34,4,3367.04,Electronics,India,Excellent quality,Positive,0
+166,2025-03-17,21,4,2871.5,Electronics,India,Very useful,Positive,0
+167,2025-03-18,54,2,3239.85,Home,India,Poor experience,Negative,0
+168,2025-03-19,44,2,4207.11,Electronics,UK,Bad quality,Negative,1
+169,2025-03-20,20,4,2279.15,Electronics,India,Average experience,Neutral,0
+170,2025-03-21,60,4,1821.64,Electronics,India,Loved it,Positive,0
+171,2025-03-22,48,3,1699.44,Home,India,Works as expected,Neutral,0
+172,2025-03-23,30,4,1765.77,Home,UK,Very useful,Positive,0
+173,2025-03-24,59,4,2430.61,Electronics,India,Loved it,Positive,0
+174,2025-03-25,45,4,2807.04,Fashion,India,Nothing special,Neutral,1
+175,2025-03-26,51,3,2749.02,Electronics,USA,Okay,Neutral,0
+176,2025-03-27,24,4,3244.46,Fashion,USA,Very useful,Positive,0
+177,2025-03-28,40,3,2511.7,Home,India,,Neutral,0
+178,2025-03-29,41,3,3808.18,Home,India,Okay,Neutral,0
+179,2025-03-30,59,5,2261.81,Electronics,UK,Excellent quality,Positive,1
+180,2025-03-31,41,3,4948.15,Fashion,USA,Works as expected,Neutral,0
+181,2025-01-01,25,4,3063.1,Home,UK,Great product,Positive,0
+182,2025-01-02,46,4,1728.56,Books,India,Excellent quality,Positive,0
+183,2025-01-03,29,3,1536.2,Fashion,India,Works as expected,Neutral,0
+184,2025-01-04,58,4,2934.23,Electronics,India,Excellent quality,Positive,0
+185,2025-01-05,19,2,,Books,UK,Bad quality,Negative,0
+186,2025-01-06,43,5,3142.6,Electronics,India,,Positive,0
+187,2025-01-07,47,3,2925.91,Books,USA,Average experience,Neutral,0
+188,2025-01-08,27,1,2434.45,Fashion,India,Poor experience,Negative,0
+189,2025-01-09,34,4,1737.89,Fashion,UK,Great product,Positive,0
+190,2025-01-10,27,1,1136.64,Electronics,India,,Negative,0
+191,2025-01-11,54,5,2098.14,Fashion,India,Very useful,Positive,0
+192,2025-01-12,37,3,3270.76,Books,USA,Nothing special,Neutral,1
+193,2025-01-13,31,3,2692.68,Fashion,India,Nothing special,Neutral,0
+194,2025-01-14,50,4,1378.84,Home,India,Works as expected,Neutral,1
+195,2025-01-15,27,4,2655.86,Home,UK,Very useful,Positive,0
+196,2025-01-16,38,5,2846.79,Home,UK,Very useful,Positive,1
+197,2025-01-17,49,4,1704.53,Home,India,Excellent quality,Positive,0
+198,2025-01-18,21,5,2638.35,Fashion,UK,Great product,Positive,0
+199,2025-01-19,26,4,2552.39,Fashion,India,Nothing special,Neutral,0
+200,2025-01-20,53,2,1471.33,Electronics,USA,Waste of money,Negative,0
+201,2025-01-21,26,4,2822.01,Fashion,UK,Loved it,Positive,0
+202,2025-01-22,56,5,3004.71,Electronics,India,Loved it,Positive,1
+203,2025-01-23,47,2,3474.75,Fashion,India,Waste of money,Negative,0
+204,2025-01-24,50,4,3448.42,Electronics,India,Works as expected,Neutral,0
+205,2025-01-25,55,3,1260.1,Fashion,UK,Okay,Neutral,0
+206,2025-01-26,48,1,1655.96,Books,India,Bad quality,Negative,0
+207,2025-01-27,46,5,2963.53,Home,India,Very useful,Positive,1
+208,2025-01-28,26,4,2962.41,Home,India,Excellent quality,Positive,1
+209,2025-01-29,39,2,2963.54,Books,India,Poor experience,Negative,0
+210,2025-01-30,37,5,5967.46,Fashion,USA,Loved it,Positive,0
+211,2025-01-31,25,5,3013.8,Books,India,Great product,Positive,0
+212,2025-02-01,40,5,3522.01,Books,India,Loved it,Positive,0
+213,2025-02-02,24,4,3358.6,Books,India,Great product,Positive,0
+214,2025-02-03,39,3,3086.25,Electronics,UK,,Neutral,1
+215,2025-02-04,48,4,2216.26,Fashion,India,Average experience,Neutral,0
+216,2025-02-05,20,1,3183.07,Electronics,USA,Waste of money,Negative,0
+217,2025-02-06,20,4,1804.46,Fashion,India,Very useful,Positive,1
+218,2025-02-07,50,5,2286.86,Electronics,India,Excellent quality,Positive,1
+219,2025-02-08,29,4,2063.17,Books,India,Very useful,Positive,1
+220,2025-02-09,38,1,2573.69,Books,India,Waste of money,Negative,0
+221,2025-02-10,18,5,4583.19,Home,India,Loved it,Positive,0
+222,2025-02-11,54,2,819.46,Books,India,Bad quality,Negative,1
+223,2025-02-12,28,5,3117.63,Fashion,India,Excellent quality,Positive,0
+224,2025-02-13,48,4,1048.56,Home,UK,Very useful,Positive,0
+225,2025-02-14,56,4,2075.26,Electronics,UK,Great product,Positive,0
+226,2025-02-15,50,1,3480.06,Fashion,UK,Waste of money,Negative,0
+227,2025-02-16,55,5,2557.85,Electronics,USA,Excellent quality,Positive,1
+228,2025-02-17,54,4,1530.03,Electronics,USA,Works as expected,Neutral,0
+229,2025-02-18,55,4,1856.23,Fashion,India,Great product,Positive,0
+230,2025-02-19,20,4,3111.64,Books,USA,Works as expected,Neutral,1
+231,2025-02-20,42,3,1842.67,Fashion,India,Okay,Neutral,1
+232,2025-02-21,26,1,2694.81,Fashion,USA,Waste of money,Negative,1
+233,2025-02-22,33,5,2541.01,Fashion,India,Great product,Positive,0
+234,2025-02-23,57,3,1913.56,Electronics,India,Average experience,Neutral,1
+235,2025-02-24,33,4,4429.55,Books,UK,Excellent quality,Positive,0
+236,2025-02-25,50,5,3070.53,Fashion,India,Loved it,Positive,0
+237,2025-02-26,32,2,677.37,Electronics,UK,Not satisfied,Negative,1
+238,2025-02-27,49,2,2667.81,Fashion,USA,Waste of money,Negative,0
+239,2025-02-28,42,4,1904.39,Books,India,Excellent quality,Positive,1
+240,2025-03-01,53,5,3267.19,Home,India,Loved it,Positive,0
+241,2025-03-02,59,4,1786.73,Electronics,UK,Excellent quality,Positive,0
+242,2025-03-03,42,4,2396.74,Books,USA,Excellent quality,Positive,0
+243,2025-03-04,18,4,2954.49,Home,India,,Positive,1
+244,2025-03-05,53,5,3279.18,Home,UK,Loved it,Positive,0
+245,2025-03-06,41,5,1419.73,Home,India,Excellent quality,Positive,0
+246,2025-03-07,44,4,2198.95,Electronics,India,Very useful,Positive,0
+247,2025-03-08,30,5,2072.55,Books,USA,Loved it,Positive,0
+248,2025-03-09,59,1,1912.0,Fashion,India,Not satisfied,Negative,1
+249,2025-03-10,52,4,4088.91,Electronics,India,Very useful,Positive,0
+250,2025-03-11,22,4,2864.48,Home,India,Great product,Positive,1
+251,2025-03-12,19,4,1365.2,Electronics,UK,Works as expected,Neutral,0
+252,2025-03-13,50,5,3326.08,Electronics,UK,Excellent quality,Positive,0
+253,2025-03-14,57,5,4409.94,Home,India,Loved it,Positive,1
+254,2025-03-15,54,3,3429.22,Electronics,India,Average experience,Neutral,1
+255,2025-03-16,42,3,,Books,India,Nothing special,Neutral,1
+256,2025-03-17,54,4,2064.19,Books,UK,Very useful,Positive,0
+257,2025-03-18,22,5,,Fashion,India,Excellent quality,Positive,0
+258,2025-03-19,22,3,1863.1,Home,UK,Works as expected,Neutral,1
+259,2025-03-20,23,5,2899.44,Home,India,Great product,Positive,0
+260,2025-03-21,38,4,,Home,India,Works as expected,Neutral,1
+261,2025-03-22,29,3,1665.76,Books,India,Average experience,Neutral,0
+262,2025-03-23,42,4,2446.43,Fashion,India,Great product,Positive,0
+263,2025-03-24,46,5,-417.14,Books,India,Excellent quality,Positive,1
+264,2025-03-25,53,3,1578.05,Electronics,India,Average experience,Neutral,0
+265,2025-03-26,18,4,2272.69,Electronics,UK,Okay,Neutral,0
+266,2025-03-27,28,4,1377.0,Fashion,USA,Okay,Neutral,0
+267,2025-03-28,45,5,3969.17,Home,India,,Positive,0
+268,2025-03-29,58,5,1212.87,Electronics,India,Loved it,Positive,0
+269,2025-03-30,39,4,2103.96,Fashion,USA,Okay,Neutral,0
+270,2025-03-31,56,4,2617.67,Books,USA,Loved it,Positive,0
+271,2025-01-01,54,2,3797.15,Fashion,USA,Poor experience,Negative,0
+272,2025-01-02,30,2,1207.72,Books,USA,Poor experience,Negative,0
+273,2025-01-03,49,4,3546.85,Fashion,India,Nothing special,Neutral,1
+274,2025-01-04,46,5,2509.21,Electronics,India,Great product,Positive,0
+275,2025-01-05,60,5,1616.64,Home,India,Very useful,Positive,0
+276,2025-01-06,24,5,2915.89,Home,India,,Positive,1
+277,2025-01-07,27,2,2679.15,Electronics,India,Waste of money,Negative,0
+278,2025-01-08,27,5,1959.8,Home,India,Very useful,Positive,0
+279,2025-01-09,24,4,2562.82,Electronics,India,Average experience,Neutral,0
+280,2025-01-10,39,4,2153.22,Books,UK,Excellent quality,Positive,0
+281,2025-01-11,45,2,2602.17,Books,India,Waste of money,Negative,1
+282,2025-01-12,57,4,3095.92,Home,India,Excellent quality,Positive,0
+283,2025-01-13,22,4,3927.42,Fashion,India,Very useful,Positive,0
+284,2025-01-14,60,5,1385.97,Home,UK,Great product,Positive,0
+285,2025-01-15,47,4,4419.73,Books,India,Average experience,Neutral,0
+286,2025-01-16,25,4,743.12,Home,USA,Excellent quality,Positive,1
+287,2025-01-17,29,3,2363.39,Home,India,Okay,Neutral,0
+288,2025-01-18,46,4,3029.49,Home,India,Excellent quality,Positive,1
+289,2025-01-19,50,2,2752.89,Home,USA,Waste of money,Negative,0
+290,2025-01-20,54,4,1939.57,Electronics,India,Excellent quality,Positive,0
+291,2025-01-21,47,5,2312.69,Fashion,UK,Loved it,Positive,0
+292,2025-01-22,52,4,2056.3,Books,India,Average experience,Neutral,1
+293,2025-01-23,40,4,1969.57,Books,India,Loved it,Positive,1
+294,2025-01-24,57,4,3264.64,Electronics,UK,Loved it,Positive,0
+295,2025-01-25,28,2,2821.31,Fashion,UK,Bad quality,Negative,0
+296,2025-01-26,21,3,1876.38,Books,India,Works as expected,Neutral,0
+297,2025-01-27,49,4,3309.64,Home,USA,Average experience,Neutral,0
+298,2025-01-28,50,4,2776.57,Home,India,Average experience,Neutral,0
+299,2025-01-29,58,3,3231.58,Books,USA,Okay,Neutral,1
+300,2025-01-30,38,5,3066.67,Home,India,Great product,Positive,0
