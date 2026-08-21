@@ -13,21 +13,21 @@ from concurrent.futures import ThreadPoolExecutor
 from crewai import Task, Crew, Process, Agent, LLM
 from pydantic import BaseModel, Field
 from dotenv import load_dotenv
-import litellm
+try:
+    import litellm
+    _orig_litellm_completion = litellm.completion
+    def _groq_safe_completion(*args, **kwargs):
+        if 'messages' in kwargs and isinstance(kwargs['messages'], list):
+            for msg in kwargs['messages']:
+                if isinstance(msg, dict):
+                    msg.pop('cache_breakpoint', None)
+        return _orig_litellm_completion(*args, **kwargs)
+    litellm.completion = _groq_safe_completion
+except Exception:
+    pass
 
 from .tools.data_tools import DataAnalyzer
-
 load_dotenv(override=True)
-
-# Patch litellm completion to drop unsupported properties (like cache_breakpoint) for Groq
-_orig_litellm_completion = litellm.completion
-def _groq_safe_completion(*args, **kwargs):
-    if 'messages' in kwargs and isinstance(kwargs['messages'], list):
-        for msg in kwargs['messages']:
-            if isinstance(msg, dict):
-                msg.pop('cache_breakpoint', None)
-    return _orig_litellm_completion(*args, **kwargs)
-litellm.completion = _groq_safe_completion
 
 # ---------------------------------------------------------------------------
 # Retry helper for transient LLM/API 503/429 errors

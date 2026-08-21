@@ -15,6 +15,7 @@ pillow>=10.0
 python-dotenv>=1.0
 textblob>=0.18
 crewai>=0.30
+litellm>=1.40.0
 langchain>=0.1
 langchain-community>=0.0
 langchain-groq>=0.1
