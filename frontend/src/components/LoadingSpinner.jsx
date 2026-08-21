@@ -1,11 +1,11 @@
 /**
  * LoadingSpinner Component - Show loading state
  */
-export default function LoadingSpinner() {
+export default function LoadingSpinner({ message = 'Loading...' }) {
   return (
     <div className="loading-spinner">
       <div className="spinner"></div>
-      <p>Loading...</p>
+      <p>{message}</p>
     </div>
   );
 }

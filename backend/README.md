@@ -27,7 +27,7 @@ Create a `.env` file from `.env.example`:
 ```bash
 cp .env.example .env
 ```
-Ensure your `GROQ_API_KEY` or `GEMINI_API_KEY` is configured.
+Ensure your `GROQ_API_KEY` is configured.
 
 ### 3. Run the Development Server
 ```bash

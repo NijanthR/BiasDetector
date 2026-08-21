@@ -27,6 +27,8 @@ export default function Upload() {
     }
   };
 
+  const [statusMessage, setStatusMessage] = useState('');
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     
@@ -38,16 +40,24 @@ export default function Upload() {
     try {
       setLoading(true);
       setError(null);
+      setStatusMessage('Uploading dataset and preparing agents...');
       
       const response = await datasetAPI.upload(file, name || file.name);
       
+      setStatusMessage('Upload successful! Redirecting to dashboard...');
       // Redirect to dashboard after successful upload
       setTimeout(() => {
         navigate('/');
-      }, 1500);
+      }, 1200);
     } catch (err) {
-      setError(err.response?.data?.error || 'Upload failed');
-      console.error(err);
+      const errorMsg = 
+        err.response?.data?.detail || 
+        err.response?.data?.error || 
+        (err.code === 'ECONNABORTED' ? 'Server timed out. Render backend may still be waking up. Please try again.' : null) ||
+        err.message || 
+        'Upload failed. Please check server connection.';
+      setError(typeof errorMsg === 'string' ? errorMsg : JSON.stringify(errorMsg));
+      console.error('Upload Error:', err);
     } finally {
       setLoading(false);
     }
@@ -94,6 +104,11 @@ export default function Upload() {
           </div>
 
           {error && <div className="error-message">{error}</div>}
+          {loading && statusMessage && (
+            <div style={{ padding: '10px 14px', background: 'rgba(59, 130, 246, 0.1)', color: '#3b82f6', borderRadius: '8px', fontSize: '14px', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span>⟳</span> {statusMessage}
+            </div>
+          )}
 
           <button 
             type="submit" 

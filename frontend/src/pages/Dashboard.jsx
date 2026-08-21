@@ -43,72 +43,77 @@ export default function Dashboard() {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const logsEndRef = React.useRef(null);
 
-  useEffect(() => {
-    let intervalId = null;
-    let stopAfter = null; // timestamp after which we stop polling if status is completed
+  const [isWakingUp, setIsWakingUp] = useState(false);
 
-    const fetchDashboardData = async (isPolling = false) => {
-      try {
-        if (!isPolling) setLoading(true);
-        // dashboardAPI and reportAPI are imported at the top
+  const fetchDashboardData = async (isPolling = false) => {
+    try {
+      if (!isPolling) setLoading(true);
+      
+      const timer = setTimeout(() => {
+        setIsWakingUp(true);
+      }, 3500);
 
-        const [statsRes, overviewRes, reportsRes] = await Promise.all([
-          dashboardAPI.getStats(),
-          dashboardAPI.getOverview(),
-          reportAPI.getLatest().catch(() => ({ data: { reports: [] } }))
-        ]);
+      const [statsRes, overviewRes, reportsRes] = await Promise.all([
+        dashboardAPI.getStats(),
+        dashboardAPI.getOverview(),
+        reportAPI.getLatest().catch(() => ({ data: { reports: [] } }))
+      ]);
 
-        const statsData = statsRes.data;
-        setStats(statsData);
-        setOverview(overviewRes.data);
+      clearTimeout(timer);
+      setIsWakingUp(false);
 
-        if (reportsRes.data.reports && reportsRes.data.reports.length > 0) {
-          setLatestReport(reportsRes.data.reports[0]);
-        }
-        setError(null);
+      const statsData = statsRes.data;
+      setStats(statsData);
+      setOverview(overviewRes.data);
 
-        // Update live logs whenever available
-        if (statsData.active_logs && statsData.active_logs.length > 0) {
-          setLiveLogs(statsData.active_logs);
-          setLogsVisible(true);
-        }
-
-        const analyzing = statsData.analysis_in_progress > 0;
-        setIsAnalyzing(analyzing);
-
-        const activeStatus = statsData.active_dataset_status;
-
-        if (analyzing) {
-          // actively processing – poll every 2 seconds
-          stopAfter = null;
-          if (!intervalId) {
-            intervalId = setInterval(() => fetchDashboardData(true), 2000);
-          }
-        } else if (activeStatus === 'completed' && statsData.active_logs?.length > 0) {
-          // just finished – keep polling for 10 more seconds to get final logs + report
-          if (!stopAfter) stopAfter = Date.now() + 10000;
-          if (!intervalId) {
-            intervalId = setInterval(() => fetchDashboardData(true), 2000);
-          }
-          if (Date.now() >= stopAfter) {
-            clearInterval(intervalId);
-            intervalId = null;
-          }
-        } else {
-          // nothing running – clear interval
-          if (intervalId) {
-            clearInterval(intervalId);
-            intervalId = null;
-          }
-        }
-      } catch (err) {
-        if (!isPolling) setError('Failed to load dashboard data');
-        console.error(err);
-      } finally {
-        if (!isPolling) setLoading(false);
+      if (reportsRes.data.reports && reportsRes.data.reports.length > 0) {
+        setLatestReport(reportsRes.data.reports[0]);
       }
-    };
+      setError(null);
 
+      // Update live logs whenever available
+      if (statsData.active_logs && statsData.active_logs.length > 0) {
+        setLiveLogs(statsData.active_logs);
+        setLogsVisible(true);
+      }
+
+      const analyzing = statsData.analysis_in_progress > 0;
+      setIsAnalyzing(analyzing);
+
+      const activeStatus = statsData.active_dataset_status;
+
+      if (analyzing) {
+        // actively processing – poll every 2 seconds
+        if (!intervalId) {
+          intervalId = setInterval(() => fetchDashboardData(true), 2000);
+        }
+      } else if (activeStatus === 'completed' && statsData.active_logs?.length > 0) {
+        // just finished – keep polling for 10 more seconds to get final logs + report
+        if (!stopAfter) stopAfter = Date.now() + 10000;
+        if (!intervalId) {
+          intervalId = setInterval(() => fetchDashboardData(true), 2000);
+        }
+        if (Date.now() >= stopAfter) {
+          clearInterval(intervalId);
+          intervalId = null;
+        }
+      } else {
+        // nothing running – clear interval
+        if (intervalId) {
+          clearInterval(intervalId);
+          intervalId = null;
+        }
+      }
+    } catch (err) {
+      setIsWakingUp(false);
+      if (!isPolling) setError('Unable to connect to backend server. If this is the first load, Render may be waking up from sleep.');
+      console.error(err);
+    } finally {
+      if (!isPolling) setLoading(false);
+    }
+  };
+
+  useEffect(() => {
     fetchDashboardData();
     return () => {
       if (intervalId) clearInterval(intervalId);
@@ -123,7 +128,16 @@ export default function Dashboard() {
     }
   }, [liveLogs]);
 
-  if (loading) return <LoadingSpinner />;
+  if (loading) {
+    return (
+      <LoadingSpinner 
+        message={isWakingUp 
+          ? "Connecting to backend... (Waking up Render free tier container, please wait a moment)" 
+          : "Loading dashboard data..."
+        } 
+      />
+    );
+  }
 
   const totalDatasets = overview?.total_datasets ?? stats?.total_datasets ?? 0;
   const completedAnalyses = overview?.completed_analyses ?? 0;
@@ -188,6 +202,39 @@ export default function Dashboard() {
 
   return (
     <div className="dashboard-page">
+      {error && (
+        <div style={{
+          marginBottom: '16px',
+          padding: '12px 18px',
+          borderRadius: '10px',
+          background: '#fef2f2',
+          border: '1px solid #fca5a5',
+          color: '#991b1b',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          fontSize: '14px'
+        }}>
+          <div>
+            <strong>Backend Connection Notice:</strong> {error}
+          </div>
+          <button 
+            onClick={() => fetchDashboardData()} 
+            style={{
+              padding: '6px 14px',
+              background: '#ef4444',
+              color: 'white',
+              border: 'none',
+              borderRadius: '6px',
+              cursor: 'pointer',
+              fontWeight: '500',
+              fontSize: '13px'
+            }}
+          >
+            Retry Connection
+          </button>
+        </div>
+      )}
       <div className="dashboard-grid dashboard-grid-top">
         <StatCard 
           title="Structural Quality" 

@@ -5,14 +5,15 @@ from dotenv import load_dotenv
 load_dotenv(override=True)
 
 def get_llm():
-    """Get LLM instance using Groq"""
-    model = os.getenv("LLM_MODEL", "groq/openai/gpt-oss-120b")
-    if not model.startswith("groq/"):
+    """Get LLM instance using Groq exclusively"""
+    groq_key = os.getenv("GROQ_API_KEY")
+    env_model = os.getenv("LLM_MODEL", "").strip()
+
+    model = env_model if env_model else "groq/llama-3.3-70b-versatile"
+    if not model.startswith("groq/") and "/" not in model:
         model = f"groq/{model}"
-    return LLM(
-        model=model,
-        api_key=os.getenv("GROQ_API_KEY")
-    )
+    
+    return LLM(model=model, api_key=groq_key)
 
 llm = get_llm()
 

@@ -42,25 +42,19 @@ app = FastAPI(
 )
 
 # CORS Configuration
-cors_env = os.getenv("CORS_ALLOWED_ORIGINS", "")
-if cors_env.strip():
+cors_env = os.getenv("CORS_ALLOWED_ORIGINS", "*")
+if cors_env.strip() and cors_env.strip() != "*":
     allowed_origins = [o.strip() for o in cors_env.split(",") if o.strip()]
+    is_wildcard = False
 else:
-    allowed_origins = [
-        "http://localhost:5173",
-        "http://127.0.0.1:5173",
-        "http://localhost:3000",
-        "http://127.0.0.1:3000",
-        "http://localhost:8000",
-    ]
+    allowed_origins = ["*"]
+    is_wildcard = True
 
-# If wildcard is requested, allow_credentials must be False per CORS spec
-is_wildcard = "*" in allowed_origins
 allow_origin_regex = os.getenv("CORS_ALLOW_ORIGIN_REGEX", r"https://.*\.vercel\.app")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=allowed_origins,
+    allow_origins=allowed_origins if not is_wildcard else ["*"],
     allow_origin_regex=None if is_wildcard else allow_origin_regex,
     allow_credentials=not is_wildcard,
     allow_methods=["*"],
@@ -78,6 +72,11 @@ app.include_router(datasets.router, prefix="/api")
 app.include_router(reports.router, prefix="/api")
 app.include_router(dashboard.router, prefix="/api")
 
+# Also include directly at root to guarantee 100% compatibility with any client base URL
+app.include_router(datasets.router)
+app.include_router(reports.router)
+app.include_router(dashboard.router)
+
 
 @app.get("/")
 def root():
@@ -90,8 +89,16 @@ def root():
     }
 
 
+@app.get("/ping")
+@app.get("/api/ping")
+def ping():
+    """Lightweight ping endpoint for connection checks & keeping instance alive"""
+    return {"status": "pong"}
+
+
 @app.get("/api/health/")
 @app.get("/api/health")
+@app.get("/health")
 def health_check():
     """Health check endpoint"""
     return {"status": "healthy"}

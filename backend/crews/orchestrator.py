@@ -19,10 +19,10 @@ from .tools.data_tools import DataAnalyzer
 load_dotenv(override=True)
 
 # ---------------------------------------------------------------------------
-# Retry helper for transient Gemini 503/429 errors
+# Retry helper for transient LLM/API 503/429 errors
 # ---------------------------------------------------------------------------
-def _kickoff_with_retry(crew: 'Crew', max_retries: int = 3, base_delay: float = 15.0):
-    """Run crew.kickoff() with exponential backoff on 503/429 errors."""
+def _kickoff_with_retry(crew: 'Crew', max_retries: int = 3, base_delay: float = 5.0):
+    """Run crew.kickoff() with exponential backoff on transient errors."""
     for attempt in range(max_retries):
         try:
             return crew.kickoff()
@@ -30,8 +30,8 @@ def _kickoff_with_retry(crew: 'Crew', max_retries: int = 3, base_delay: float = 
             err_str = str(e)
             is_retryable = '503' in err_str or '429' in err_str or 'UNAVAILABLE' in err_str or 'rate' in err_str.lower()
             if is_retryable and attempt < max_retries - 1:
-                delay = base_delay * (2 ** attempt)  # 15s, 30s, 60s
-                print(f"[retry] Gemini transient error (attempt {attempt+1}/{max_retries}), retrying in {delay:.0f}s...")
+                delay = base_delay * (2 ** attempt)  # 5s, 10s, 20s
+                print(f"[retry] Groq API transient error (attempt {attempt+1}/{max_retries}), retrying in {delay:.0f}s...")
                 time.sleep(delay)
             else:
                 raise  # re-raise on final attempt or non-retryable error
@@ -61,14 +61,14 @@ class ReportOutput(BaseModel):
 
 # ---------------------------------------------------------------------------
 def _make_llm() -> LLM:
-    """Return a fresh LLM instance using Groq."""
-    model = os.getenv("LLM_MODEL", "groq/openai/gpt-oss-120b")
-    if not model.startswith("groq/"):
+    """Return a fresh LLM instance using Groq exclusively."""
+    groq_key = os.getenv("GROQ_API_KEY")
+    env_model = os.getenv("LLM_MODEL", "").strip()
+
+    model = env_model if env_model else "groq/llama-3.3-70b-versatile"
+    if not model.startswith("groq/") and "/" not in model:
         model = f"groq/{model}"
-    return LLM(
-        model=model,
-        api_key=os.getenv("GROQ_API_KEY")
-    )
+    return LLM(model=model, api_key=groq_key)
 
 
 def _make_agents():
@@ -238,7 +238,6 @@ class AgentOrchestrator:
         log_status('Dataset Classifier', 'completed')
 
         # ---- PHASE 2: Sequential chunk quality analysis ----------------------
-        # Reduced to 1 chunk and run sequentially to avoid Gemini API 429 Quota limits
         num_chunks = 1
         chunks = np.array_split(df, num_chunks)
         chunk_results = []

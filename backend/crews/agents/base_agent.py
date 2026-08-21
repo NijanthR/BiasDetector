@@ -28,8 +28,10 @@ class BaseAnalysisAgent(ABC):
             from langchain_groq import ChatGroq
             api_key = os.getenv("GROQ_API_KEY")
             if api_key and api_key != "your_api_key_here":
+                model_name = os.getenv("LLM_MODEL", "llama-3.3-70b-versatile")
+                model_name = model_name.replace("groq/", "")
                 return ChatGroq(
-                    model="openai/gpt-oss-120b",
+                    model=model_name,
                     groq_api_key=api_key,
                     temperature=0.2
                 )

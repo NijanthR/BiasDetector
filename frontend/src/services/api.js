@@ -3,11 +3,14 @@
  */
 import axios from 'axios';
 
-const rawBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api';
-const API_BASE_URL = rawBaseUrl.replace(/\/+$/, '');
+let rawBaseUrl = (import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api').trim();
+rawBaseUrl = rawBaseUrl.replace(/\/+$/, '');
+// Ensure the base URL always points to the /api endpoint
+const API_BASE_URL = rawBaseUrl.endsWith('/api') ? rawBaseUrl : `${rawBaseUrl}/api`;
 
 const api = axios.create({
   baseURL: API_BASE_URL,
+  timeout: 120000, // 2-minute timeout for Render free tier cold starts
   headers: {
     'Content-Type': 'application/json',
   },
@@ -23,11 +26,28 @@ api.interceptors.request.use(
   }
 );
 
-// Response interceptor
+// Response interceptor with automatic retry on cold-start errors (502, 503, 504, Network Error)
 api.interceptors.response.use(
   (response) => response,
-  (error) => {
-    console.error('API Error:', error);
+  async (error) => {
+    const config = error.config;
+    
+    // Only retry GET requests or idempotent requests if it's a server wake-up issue
+    if (config && (!config._retryCount || config._retryCount < 2)) {
+      const isColdStartError = 
+        !error.response || 
+        [502, 503, 504].includes(error.response.status) || 
+        error.code === 'ECONNABORTED';
+
+      if (isColdStartError && (!config.method || config.method.toLowerCase() === 'get')) {
+        config._retryCount = (config._retryCount || 0) + 1;
+        console.warn(`[API] Server wake-up in progress. Retrying request (${config._retryCount}/2)...`);
+        await new Promise((resolve) => setTimeout(resolve, 3000));
+        return api(config);
+      }
+    }
+
+    console.error('API Error:', error.response?.data || error.message);
     return Promise.reject(error);
   }
 );
